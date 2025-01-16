@@ -52,6 +52,12 @@ Este é um aplicativo mobile desenvolvido em **React Native** como forma de desa
     # ou
     yarn ios
 
+### 🔑 **LOGIN**
+
+   usuario: teste
+   
+   senha: 123
+   
 ---
 🙏 Agradecimentos
 

@@ -1,17 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "es2015"
-    ],
+    "lib": ["dom", "es2015"],
     "jsx": "react",
     "module": "commonjs",
     "baseUrl": ".",
     "paths": {
-      "@modules/*": [
-        "src/*"
-      ]
+      "@modules/*": ["src/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,7 +16,9 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "isolatedModules": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "types": ["babel__core", "istanbul-lib-report"]
   },
   "exclude": [
     "node_modules",
