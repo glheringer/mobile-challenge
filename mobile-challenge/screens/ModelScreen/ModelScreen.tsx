@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, ActivityIndicator } from "react-native";
 import axios from "axios";
-import styled from "styled-components/native";
 import { theme } from "utils/theme";
 
-import { useRoute } from "@react-navigation/native";
+import {
+  Container,
+  EmptyText,
+  ModelContainer,
+  ModelText,
+} from "./ModelScreen.styles";
 
+import { useRoute } from "@react-navigation/native";
 
 interface Model {
   codigo: string;
@@ -62,38 +67,5 @@ const ModelScreen: React.FC = () => {
     </Container>
   );
 };
-
-const Container = styled.View`
-  flex: 1;
-  padding: ${theme.spacings.medium};
-  background-color: ${theme.colors.background};
-`;
-
-const Title = styled.Text`
-  font-size: ${theme.fontSizes.xlarge};
-  font-family: ${theme.fonts.bold};
-  color: ${theme.colors.primary};
-  margin-bottom: ${theme.spacings.medium};
-  text-align: center;
-`;
-
-const ModelContainer = styled.TouchableOpacity`
-  padding: ${theme.spacings.medium};
-  border-bottom-width: 1px;
-  border-bottom-color: ${theme.colors.secondaryText};
-`;
-
-const ModelText = styled.Text`
-  font-size: ${theme.fontSizes.medium};
-  font-family: ${theme.fonts.regular};
-  color: ${theme.colors.text};
-`;
-
-const EmptyText = styled.Text`
-  font-size: ${theme.fontSizes.medium};
-  color: ${theme.colors.secondaryText};
-  text-align: center;
-  margin-top: ${theme.spacings.medium};
-`;
 
 export default ModelScreen;
