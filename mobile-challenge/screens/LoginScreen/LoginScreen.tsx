@@ -1,27 +1,37 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "contexts/AuthContext";
-import { AppStackParamList } from "App";
-import { StackNavigationProp } from "@react-navigation/stack";
 import styled from "styled-components/native";
 import { theme } from "utils/theme";
 import { TextInputMask } from "react-native-masked-text";
+import { useForm, Controller } from "react-hook-form";
+
+import { AppStackParamList } from "App";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 type LoginScreenNavigationProp = StackNavigationProp<
   AppStackParamList,
   "Login"
 >;
 
+interface FormData {
+  username: string;
+  password: string;
+}
+
 const LoginScreen: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
   const authContext = useContext(AuthContext);
   const navigation = useNavigation<LoginScreenNavigationProp>();
 
-  const handleLogin = async () => {
+  const onSubmit = async (data: FormData) => {
     if (authContext) {
       try {
-        // await authContext.signIn(username, password);
+        await authContext.signIn(data.username, data.password);
         navigation.navigate("Home");
       } catch (error) {
         alert("Login failed");
@@ -34,28 +44,48 @@ const LoginScreen: React.FC = () => {
   return (
     <Container>
       <Title>Login</Title>
-      <MaskedInput
-        type={"custom"}
-        options={{
-          mask: "********************",
-        }}
-        placeholder="Usuário"
-        value={username}
-        onChangeText={setUsername}
-        placeholderTextColor={theme.colors.secondary}
+      <Controller
+        control={control}
+        name="username"
+        rules={{ required: "Username is required" }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <MaskedInput
+            type={"custom"}
+            options={{
+              mask: "********************",
+            }}
+            autoCapitalize="none"
+            placeholder="Usuário"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor={theme.colors.secondary}
+          />
+        )}
       />
-      <MaskedInput
-        type={"custom"}
-        options={{
-          mask: "********************",
-        }}
-        placeholder="Senha"
-        value={password}
-        onChangeText={setPassword}
-        placeholderTextColor={theme.colors.secondary}
-        secureTextEntry
+      {errors.username && <ErrorText>{errors.username.message}</ErrorText>}
+      <Controller
+        control={control}
+        name="password"
+        rules={{ required: "Password is required" }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <MaskedInput
+            type={"custom"}
+            options={{
+              mask: "********************",
+            }}
+            autoCapitalize="none"
+            placeholder="Senha"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor={theme.colors.secondary}
+            secureTextEntry
+          />
+        )}
       />
-      <Button onPress={handleLogin}>
+      {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
+      <Button onPress={handleSubmit(onSubmit)}>
         <ButtonText>Entrar</ButtonText>
       </Button>
     </Container>
@@ -67,8 +97,8 @@ const Container = styled.View`
   justify-content: flex-start;
   align-items: center;
   padding: ${theme.spacings.large};
-  background-color: ${theme.colors.background};
   margin-top: 32;
+  background-color: ${theme.colors.background};
 `;
 
 const Title = styled.Text`
@@ -104,6 +134,11 @@ const ButtonText = styled.Text`
   font-size: ${theme.fontSizes.medium};
   font-family: ${theme.fonts.bold};
   color: ${theme.colors.buttonText};
+`;
+
+const ErrorText = styled.Text`
+  color: ${theme.colors.error};
+  margin-bottom: ${theme.spacings.small};
 `;
 
 export default LoginScreen;

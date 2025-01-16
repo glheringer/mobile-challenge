@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import { AppStackParamList } from "App";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import { AuthContext } from "contexts/AuthContext";
 import styled from "styled-components/native";
 import { theme } from "utils/theme";
 import { logo } from "../../assets";
+
+import { AppStackParamList } from "App";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
+
+import Header from "components/HeaderLogo/Header";
 
 type HomeScreenNavigationProp = StackNavigationProp<
   AppStackParamList,
@@ -21,6 +25,7 @@ interface Brand {
 const HomeScreen: React.FC = () => {
   const [brands, setBrands] = useState<Brand[]>([]);
   const navigation = useNavigation<HomeScreenNavigationProp>();
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -37,14 +42,20 @@ const HomeScreen: React.FC = () => {
     navigation.navigate("Models", { brandCode });
   };
 
+  const handleSignOut = () => {
+    authContext?.signOut();
+    navigation.navigate("Login");
+  };
+
   return (
     <Container>
-      <Header>
-        <Logo source={logo} />
-        <Wrapper>
-          <Title>App de Marcas</Title>
-        </Wrapper>
-      </Header>
+      <Header
+        logo={logo}
+        onSignOut={handleSignOut}
+        title={"App de Marcas"}
+        buttonColor={theme.colors.primary}
+      />
+      <UserName>Bem vindo, {authContext?.user?.name}</UserName>
       <FlatList
         data={brands}
         keyExtractor={(item) => item.codigo}
@@ -67,30 +78,12 @@ const Container = styled.View`
   background-color: ${theme.colors.background};
 `;
 
-const Header = styled.SafeAreaView`
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: ${theme.spacings.medium};
-  padding: 0 ${theme.spacings.medium};
-`;
-
-const Logo = styled.Image`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-`;
-
-const Wrapper = styled.View`
-  flex: 1;
-  align-items: center;
-`;
-
-const Title = styled.Text`
-  font-size: ${theme.fontSizes.xlarge};
+const UserName = styled.Text`
+  font-size: ${theme.fontSizes.small};
   font-family: ${theme.fonts.bold};
-  text-align: center;
   color: ${theme.colors.primary};
+  text-align: center;
+  margin-bottom: ${theme.spacings.medium};
 `;
 
 const BrandContainer = styled.TouchableOpacity`
