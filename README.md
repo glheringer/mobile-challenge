@@ -64,9 +64,7 @@ Este é um aplicativo mobile desenvolvido em **React Native** como forma de desa
 ##  🧪 Como Rodar os Testes
 1. Execute os testes com o comando:
     ```bash
-    yarn install
-    # ou
-    npm install
+    npm test
 ---
 
 🙏 Agradecimentos
