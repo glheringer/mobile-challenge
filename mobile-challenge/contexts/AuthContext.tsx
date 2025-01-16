@@ -27,13 +27,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await AsyncStorage.setItem("@user", JSON.stringify(userData));
       setUser(userData);
 
-      // Log para verificar os dados do usuário
       console.log("User data:", userData);
     } catch (error: any) {
-      // Log para verificar o erro
       console.error("Login error:", error);
 
-      // Verifique se há uma mensagem de erro específica
       if (
         error.response &&
         error.response.data &&

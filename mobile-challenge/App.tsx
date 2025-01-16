@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { AuthProvider } from "contexts/AuthContext";
+import { theme } from "utils/theme";
+import { loadFonts } from "utils/fontsLoader";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { AuthProvider } from "contexts/AuthContext";
+
 import LoginScreen from "screens/LoginScreen/LoginScreen";
 import HomeScreen from "screens/HomeScreen/HomeScreen";
 import ModelScreen from "screens/ModelScreen/ModelScreen";
-import * as Font from "expo-font";
 
 export type AppStackParamList = {
   Login: undefined;
@@ -14,13 +17,6 @@ export type AppStackParamList = {
 };
 
 const Stack = createStackNavigator<AppStackParamList>();
-
-const loadFonts = () => {
-  return Font.loadAsync({
-    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
-  });
-};
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -43,7 +39,20 @@ export default function App() {
             component={HomeScreen}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="Models" component={ModelScreen} />
+          <Stack.Screen
+            name="Models"
+            component={ModelScreen}
+            options={{
+              title: "Modelos de Carros",
+              headerStyle: {
+                backgroundColor: theme.colors.primary,
+              },
+              headerTintColor: theme.colors.background,
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>

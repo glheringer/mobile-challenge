@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FlatList, ActivityIndicator } from "react-native";
 import axios from "axios";
 import styled from "styled-components/native";
-import { useRoute } from "@react-navigation/native";
 import { theme } from "utils/theme";
+
+import { useRoute } from "@react-navigation/native";
+
 
 interface Model {
   codigo: string;
@@ -11,13 +13,13 @@ interface Model {
 }
 
 interface RouteParams {
-  brandCode: string; // Código da marca passada pela navegação
+  brandCode: string;
 }
 
 const ModelScreen: React.FC = () => {
   const [models, setModels] = useState<Model[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const route = useRoute(); // Hook para acessar os parâmetros da rota
+  const route = useRoute();
   const { brandCode } = route.params as RouteParams;
 
   useEffect(() => {
@@ -47,7 +49,6 @@ const ModelScreen: React.FC = () => {
 
   return (
     <Container>
-      <Title>Modelos de Carros</Title>
       <FlatList
         data={models}
         keyExtractor={(item) => item.codigo}
