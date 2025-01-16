@@ -13,6 +13,7 @@ Este é um aplicativo mobile desenvolvido em **React Native** como forma de desa
 - **🔗 Axios**: Biblioteca para requisições HTTP.
 - **🎨 Styled-Components**: Para estilização de componentes.
 - **🚦 React Navigation**: Navegação entre telas no aplicativo.
+- **🧪 Jest**: Biblioteca para testes unitários, garantindo qualidade e confiabilidade.
 
 ---
 
@@ -59,6 +60,15 @@ Este é um aplicativo mobile desenvolvido em **React Native** como forma de desa
    senha: 123
    
 ---
+
+##  🧪 Como Rodar os Testes
+1. Execute os testes com o comando:
+    ```bash
+    yarn install
+    # ou
+    npm install
+---
+
 🙏 Agradecimentos
 
 Agradeço a você que está lendo este arquivo :)
