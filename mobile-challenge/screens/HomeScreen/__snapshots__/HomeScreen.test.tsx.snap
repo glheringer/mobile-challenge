@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeScreen renders correctly and matches snapshot 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+      "paddingBottom": 16,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <RCTSafeAreaView
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 16,
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../assets/logo.png",
+        }
+      }
+      style={
+        {
+          "borderBottomLeftRadius": "50%",
+          "borderBottomRightRadius": "50%",
+          "borderTopLeftRadius": "50%",
+          "borderTopRightRadius": "50%",
+          "height": 60,
+          "width": 60,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#145DA0",
+            "fontSize": 24,
+          }
+        }
+      >
+        App de Marcas
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "overflow": "hidden",
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "disabled": false,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            selectable={false}
+            style={
+              [
+                {
+                  "color": "#EF5350",
+                  "fontSize": 40,
+                },
+                {
+                  "backgroundColor": "transparent",
+                },
+                {
+                  "fontFamily": "Material Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                {},
+              ]
+            }
+            testID="iconIcon"
+          >
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTSafeAreaView>
+  <Text
+    style={
+      {
+        "color": "#145DA0",
+        "fontFamily": "Roboto-Bold",
+        "fontSize": 14,
+        "marginBottom": 16,
+        "textAlign": "center",
+      }
+    }
+  >
+    Bem vindo, 
+    Test User
+  </Text>
+  <RCTScrollView
+    ListEmptyComponent={
+      <Styled(Text)>
+        No brands found
+      </Styled(Text)>
+    }
+    data={[]}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <Text
+        onLayout={[Function]}
+        style={
+          {
+            "color": "#c4c4c4",
+            "fontSize": 16,
+            "marginTop": 16,
+            "textAlign": "center",
+          }
+        }
+      >
+        No brands found
+      </Text>
+    </View>
+  </RCTScrollView>
+</View>
+`;
