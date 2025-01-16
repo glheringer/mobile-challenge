@@ -4,7 +4,7 @@ import axios from "axios";
 
 interface AuthContextProps {
   user: any;
-  signIn: (username: string, password: string) => Promise<void>;
+  signIn: (username: string, password: string) => Promise<boolean>;
   signOut: () => Promise<void>;
 }
 
@@ -17,44 +17,48 @@ interface AuthProviderProps {
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const signIn = async (username: string, password: string) => {
+  const signIn = async (
+    username: string,
+    password: string
+  ): Promise<boolean> => {
     try {
       const response = await axios.post(
         "https://test-api-y04b.onrender.com/signIn",
         { user: username, password }
       );
-      const userData = response.data.user;
-      await AsyncStorage.setItem("@user", JSON.stringify(userData));
-      setUser(userData);
 
-      console.log("User data:", userData);
-    } catch (error: any) {
-      console.error("Login error:", error);
+      console.log("Response data:", response.data); // Adicione este log para depuração
 
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
-        alert("Login failed: " + error.response.data.message);
+      if (!response.data.error) {
+        setUser(response.data.user);
+        await AsyncStorage.setItem("user", JSON.stringify(response.data.user));
+        return true;
       } else {
-        alert("Login failed: " + error.message);
+        return false;
       }
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      return false;
     }
   };
 
   const signOut = async () => {
-    await AsyncStorage.removeItem("@user");
-    setUser(null);
+    try {
+      await AsyncStorage.removeItem("user");
+      setUser(null);
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
   };
 
   useEffect(() => {
     const loadUser = async () => {
-      const userData = await AsyncStorage.getItem("@user");
-      if (userData) {
-        setUser(JSON.parse(userData));
+      const storedUser = await AsyncStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
       }
     };
+
     loadUser();
   }, []);
 
@@ -65,4 +69,4 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 };
 
-export { AuthProvider, AuthContext };
+export { AuthContext, AuthProvider };

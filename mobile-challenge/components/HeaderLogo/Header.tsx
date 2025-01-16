@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, ImageSourcePropType } from "react-native";
+import { ImageSourcePropType } from "react-native";
+import { Icon } from "react-native-elements";
 import styled from "styled-components/native";
 import { theme } from "utils/theme";
 
@@ -19,16 +20,24 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <HeaderContainer>
       <Logo source={logo} />
-      <Wrapper>
+      <TitleWrapper>
         <Title>{title}</Title>
-        <SignOutButton title="Sair" onPress={onSignOut} color={buttonColor} />
-      </Wrapper>
+      </TitleWrapper>
+      <Icon
+        name="close"
+        type="material"
+        color={buttonColor}
+        onPress={onSignOut}
+        size={40}
+      />
     </HeaderContainer>
   );
 };
 
 const HeaderContainer = styled.SafeAreaView`
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: ${theme.spacings.medium};
   padding: 0 ${theme.spacings.medium};
 `;
@@ -39,21 +48,14 @@ const Logo = styled.Image`
   border-radius: 50%;
 `;
 
-const Wrapper = styled.View`
+const TitleWrapper = styled.View`
   flex: 1;
-  flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
-  margin-left: 10px;
 `;
 
 const Title = styled.Text`
   font-size: ${theme.fontSizes.xlarge};
   color: ${theme.colors.primary};
-`;
-
-const SignOutButton = styled(Button)`
-  margin-left: auto;
 `;
 
 export default Header;

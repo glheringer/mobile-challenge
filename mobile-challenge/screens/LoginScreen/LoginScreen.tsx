@@ -31,13 +31,19 @@ const LoginScreen: React.FC = () => {
   const onSubmit = async (data: FormData) => {
     if (authContext) {
       try {
-        await authContext.signIn(data.username, data.password);
-        navigation.navigate("Home");
+        console.log("Tentando fazer login com:", data); // Adicione este log para depuração
+        const isAuthenticated = await authContext.signIn(
+          data.username,
+          data.password
+        );
+        if (isAuthenticated) {
+          navigation.navigate("Home");
+        } else {
+          alert("Usuário ou senha incorretos");
+        }
       } catch (error) {
-        alert("Login failed");
+        alert("Ocorreu um erro ao tentar fazer login");
       }
-    } else {
-      alert("Auth context is not available");
     }
   };
 

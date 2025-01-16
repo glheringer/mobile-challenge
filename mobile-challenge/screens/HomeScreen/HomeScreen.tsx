@@ -53,7 +53,7 @@ const HomeScreen: React.FC = () => {
         logo={logo}
         onSignOut={handleSignOut}
         title={"App de Marcas"}
-        buttonColor={theme.colors.primary}
+        buttonColor={theme.colors.error}
       />
       <UserName>Bem vindo, {authContext?.user?.name}</UserName>
       <FlatList
