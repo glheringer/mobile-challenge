@@ -6,6 +6,7 @@ Este é um aplicativo mobile desenvolvido em **React Native** como forma de desa
 
 ## 🛠 Tecnologias Utilizadas
 
+- **📱 Expo**: Plataforma para desenvolvimento e construção de aplicativos React Native, oferecendo ferramentas e serviços para facilitar o fluxo de trabalho.
 - **⚙️ TypeScript**: Superset de JavaScript para maior segurança e tipagem estática.
 - **🌐 Context API**: Gerenciamento de estado global para compartilhar dados entre componentes.
 - **📋 React Hook Form**: Gerenciamento de formulários de forma simples e eficiente.
