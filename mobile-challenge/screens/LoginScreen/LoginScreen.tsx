@@ -19,7 +19,7 @@ const LoginScreen: React.FC = () => {
   const handleLogin = async () => {
     if (authContext) {
       try {
-        await authContext.signIn(username, password);
+        // await authContext.signIn(username, password);
         navigation.navigate("Home");
       } catch (error) {
         alert("Login failed");
