@@ -27,10 +27,22 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await AsyncStorage.setItem("@user", JSON.stringify(userData));
       setUser(userData);
 
-      const savedUser = await AsyncStorage.getItem("@user");
-      console.log("Dados do usuario: ", savedUser);
+      // Log para verificar os dados do usuário
+      console.log("User data:", userData);
     } catch (error: any) {
-      alert("Login failed: " + error.response.data.message);
+      // Log para verificar o erro
+      console.error("Login error:", error);
+
+      // Verifique se há uma mensagem de erro específica
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        alert("Login failed: " + error.response.data.message);
+      } else {
+        alert("Login failed: " + error.message);
+      }
     }
   };
 
