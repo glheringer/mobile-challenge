@@ -6,7 +6,10 @@
     "module": "commonjs",
     "baseUrl": ".",
     "paths": {
-      "@modules/*": ["src/*"]
+      "contexts/*": ["contexts/*"],
+      "utils/*": ["utils/*"],
+      "components/*": ["components/*"],
+      "assets/*": ["assets/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -18,7 +21,7 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "./types"],
-    "types": ["babel__core", "istanbul-lib-report"]
+    "types": ["babel__core", "istanbul-lib-report", "jest", "node"]
   },
   "exclude": [
     "node_modules",
